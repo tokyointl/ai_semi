@@ -191,11 +191,9 @@
     border: 2px solid transparent;
     border-radius: 10px;
     padding: 18px 22px;
-    font-size: 21px;
     color: var(--accent-deep);
     text-decoration: none;
     transition: all 0.2s ease;
-    min-height: 60px;
   }
 
   .link-list a:hover,
@@ -206,9 +204,27 @@
     outline: none;
   }
 
-  .link-list a::before {
+  .link-title {
+    display: block;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .link-title::before {
     content: "🔗 ";
-    margin-right: 8px;
+    margin-right: 4px;
+  }
+
+  .link-desc {
+    display: block;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    line-height: 1.7;
+    padding-left: 4px;
+    border-top: 1px dotted var(--border);
+    padding-top: 10px;
   }
 
   /* お知らせ */
@@ -244,7 +260,9 @@
     .download-icon { width: 36px; height: 36px; font-size: 13px; }
     .download-title { font-size: 19px; }
     .link-group { padding: 20px; }
-    .link-list a { font-size: 19px; padding: 16px 18px; }
+    .link-list a { padding: 16px 18px; }
+    .link-title { font-size: 20px; }
+    .link-desc { font-size: 14px; }
   }
 </style>
 </head>
@@ -252,14 +270,14 @@
 <div class="container">
 
   <header>
-    <h1>AI セミナー 資料配布ページ</h1>
-    <p class="subtitle">ご参加の皆さまへ</p>
+    <h1>◯◯セミナー 資料配布ページ</h1>
+    <p class="subtitle">第3回 ご参加の皆さまへ</p>
   </header>
 
   <section>
     <div class="intro-text">
       ご参加いただきありがとうございました。<br>
-      下記より、資料をダウンロードいただけます。<br>
+      下記より、当日の配布資料をダウンロードいただけます。<br>
       ご不明な点がございましたら、お気軽にお問い合わせください。
     </div>
   </section>
@@ -267,7 +285,7 @@
   <!-- 関連リンクを先に -->
   <section>
     <h2>🌐 関連リンク</h2>
- 
+
     <!-- グループ1: 法令 -->
     <div class="link-group">
       <h3>法令（法律・政令・省令）</h3>
@@ -280,7 +298,7 @@
         </li>
       </ul>
     </div>
- 
+
     <!-- グループ2: 判例 -->
     <div class="link-group">
       <h3>判例（裁判例）</h3>
@@ -293,7 +311,7 @@
         </li>
       </ul>
     </div>
- 
+
     <!-- グループ3: 国会資料・立法資料 -->
     <div class="link-group">
       <h3>国会資料・立法資料</h3>
@@ -312,7 +330,7 @@
         </li>
       </ul>
     </div>
- 
+
     <!-- グループ4: 官報 -->
     <div class="link-group">
       <h3>官報</h3>
@@ -325,7 +343,7 @@
         </li>
       </ul>
     </div>
- 
+
     <!-- グループ5: 学術論文・法学論文 -->
     <div class="link-group">
       <h3>学術論文・法学論文</h3>
@@ -333,7 +351,7 @@
         <li>
           <a href="https://cir.nii.ac.jp/" target="_blank" rel="noopener">
             <span class="link-title">CiNii Research</span>
-            <span class="link-desc">日本の学術論文検索。「生成AI 著作権」「天皇機関説」「行政裁量」などのキーワード検索が可能です。</span>
+            <span class="link-desc">日本の学術論文検索。「生成AI 著作権」「行政裁量」などのキーワード検索が可能です。</span>
           </a>
         </li>
         <li>
@@ -344,7 +362,7 @@
         </li>
       </ul>
     </div>
- 
+
   </section>
 
   <!-- ダウンロードをリンクの下に -->
@@ -361,7 +379,7 @@
         <div class="download-arrow">⬇</div>
       </a>
 
-      <a href="files/servercloud.pdf" download class="download-card">
+      <a href="files/handout.pdf" download class="download-card">
         <div class="download-icon">PDF</div>
         <div class="download-info">
           <p class="download-title">当日配布レジュメ</p>
