@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セミナー資料 ご案内ページ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f8ec;
+    --bg-card: #ffffff;
+    --bg-soft: #eaf2dc;
+    --ink: #2a3327;
+    --ink-soft: #56624f;
+    --accent: #5a7a4f;
+    --accent-deep: #466239;
+    --accent-soft: #a8c89a;
+    --accent-pale: #d4e4c4;
+    --border: #d8e4c8;
+    --shadow: 0 2px 8px rgba(70, 98, 57, 0.08);
+    --shadow-hover: 0 4px 16px rgba(70, 98, 57, 0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'BIZ UDPGothic', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    font-size: 20px;
+    line-height: 1.9;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  header {
+    text-align: center;
+    padding: 32px 0 48px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: var(--accent-deep);
+    letter-spacing: 0.02em;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  section {
+    margin-bottom: 56px;
+  }
+
+  h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 28px;
+    color: var(--accent-deep);
+    border-left: 6px solid var(--accent-soft);
+    padding-left: 16px;
+    margin: 0 0 24px;
+    line-height: 1.4;
+  }
+
+  /* グループ見出し */
+  h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    color: var(--accent);
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--accent-soft);
+  }
+
+  .intro-text {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+
+  /* ダウンロードカード */
+  .download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .download-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow);
+    min-height: 76px;
+  }
+
+  .download-card:hover,
+  .download-card:focus {
+    border-color: var(--accent-soft);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .download-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+  }
+
+  .download-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .download-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+
+  .download-meta {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .download-arrow {
+    flex-shrink: 0;
+    font-size: 24px;
+    color: var(--accent);
+  }
+
+  /* リンクグループ */
+  .link-group {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .link-list a {
+    display: block;
+    background: var(--bg-soft);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-size: 21px;
+    color: var(--accent-deep);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-height: 60px;
+  }
+
+  .link-list a:hover,
+  .link-list a:focus {
+    background: var(--accent-pale);
+    border-color: var(--accent-soft);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .link-list a::before {
+    content: "🔗 ";
+    margin-right: 8px;
+  }
+
+  /* お知らせ */
+  .notice {
+    background: var(--bg-soft);
+    border: 2px solid var(--accent-soft);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-top: 32px;
+  }
+
+  .notice strong {
+    color: var(--accent-deep);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 2px solid var(--border);
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  /* スマートフォン対応 */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px 60px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    body { font-size: 18px; }
+    .download-card { padding: 18px 16px; gap: 14px; }
+    .download-icon { width: 36px; height: 36px; font-size: 13px; }
+    .download-title { font-size: 19px; }
+    .link-group { padding: 20px; }
+    .link-list a { font-size: 19px; padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>◯◯セミナー 資料配布ページ</h1>
+    <p class="subtitle">第3回 ご参加の皆さまへ</p>
+  </header>
+
+  <section>
+    <div class="intro-text">
+      ご参加いただきありがとうございました。<br>
+      下記より、当日の配布資料をダウンロードいただけます。<br>
+      ご不明な点がございましたら、お気軽にお問い合わせください。
+    </div>
+  </section>
+
+  <!-- 関連リンクを先に -->
+  <section>
+    <h2>🌐 関連リンク</h2>
+
+    <!-- グループ1 -->
+    <div class="link-group">
+      <h3>主催団体・公式情報</h3>
+      <ul class="link-list">
+        <li><a href="https://example.com" target="_blank" rel="noopener">主催団体ホームページ</a></li>
+        <li><a href="https://example.com/about" target="_blank" rel="noopener">団体の活動方針</a></li>
+      </ul>
+    </div>
+
+    <!-- グループ2 -->
+    <div class="link-group">
+      <h3>セミナー情報</h3>
+      <ul class="link-list">
+        <li><a href="https://example.com/next" target="_blank" rel="noopener">次回セミナーのご案内</a></li>
+        <li><a href="https://example.com/past" target="_blank" rel="noopener">過去のセミナー一覧</a></li>
+        <li><a href="https://example.com/calendar" target="_blank" rel="noopener">年間スケジュール</a></li>
+      </ul>
+    </div>
+
+    <!-- グループ3 -->
+    <div class="link-group">
+      <h3>参考リソース</h3>
+      <ul class="link-list">
+        <li><a href="https://example.com/glossary" target="_blank" rel="noopener">用語集</a></li>
+        <li><a href="https://example.com/faq" target="_blank" rel="noopener">よくあるご質問</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ダウンロードをリンクの下に -->
+  <section>
+    <h2>📄 配布資料のダウンロード</h2>
+    <div class="download-list">
+
+      <a href="files/seminar-text.pdf" download class="download-card">
+        <div class="download-icon">PDF</div>
+        <div class="download-info">
+          <p class="download-title">セミナーテキスト（本編）</p>
+          <p class="download-meta">PDF形式 ・ 約2.5MB</p>
+        </div>
+        <div class="download-arrow">⬇</div>
+      </a>
+
+      <a href="files/handout.pdf" download class="download-card">
+        <div class="download-icon">PDF</div>
+        <div class="download-info">
+          <p class="download-title">当日配布レジュメ</p>
+          <p class="download-meta">PDF形式 ・ 約800KB</p>
+        </div>
+        <div class="download-arrow">⬇</div>
+      </a>
+
+      <a href="files/questionnaire.pdf" download class="download-card">
+        <div class="download-icon">PDF</div>
+        <div class="download-info">
+          <p class="download-title">アンケート用紙</p>
+          <p class="download-meta">PDF形式 ・ 約400KB</p>
+        </div>
+        <div class="download-arrow">⬇</div>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="notice">
+      <strong>お知らせ</strong><br>
+      次回セミナーは <strong>6月15日（日）</strong> 開催予定です。<br>
+      詳細は決まり次第、こちらのページにてご案内いたします。
+    </div>
+  </section>
+
+  <footer>
+    最終更新日：2026年5月21日<br>
+    お問い合わせ：info@example.com
+  </footer>
+
+</div>
+</body>
+</html>
