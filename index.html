@@ -328,17 +328,37 @@
       display: flex;
     }
 
-  .controls {
-  display: flex;
-  gap: 20px;
+ .nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 64px;
+  height: 64px;
+
+  border: none;
+  border-radius: 50%;
+
+  font-size: 36px;
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.85);
+  color: #333;
+
+  transition: 0.2s;
 }
 
-.controls button {
-  padding: 12px 24px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.nav-btn:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.prev {
+  left: 30px;
+}
+
+.next {
+  right: 30px;
 }
 </style>
 </head>
@@ -419,14 +439,15 @@
     </tr>
   </table>
 
- <div class="modal" id="modal">
-    <img id="modalImage" src="" alt="">
+<div class="modal" id="modal">
 
-<div class="controls">
-  <button id="prevBtn">← 戻る</button>
-  <button id="nextBtn">進む →</button>
-</div>   
-  </div>
+  <button id="prevBtn" class="nav-btn prev">❮</button>
+
+  <img id="modalImage" src="" alt="">
+
+  <button id="nextBtn" class="nav-btn next">❯</button>
+
+</div>
 <!-- 追加 -->
 
 
