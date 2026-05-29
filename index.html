@@ -327,6 +327,19 @@
     .modal.active {
       display: flex;
     }
+
+  .controls {
+  display: flex;
+  gap: 20px;
+}
+
+.controls button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -409,7 +422,12 @@
  <div class="modal" id="modal">
     <img id="modalImage" src="" alt="">
   </div>
+<!-- 追加 -->
 
+<div class="controls">
+  <button id="prevBtn">← 戻る</button>
+  <button id="nextBtn">進む →</button>
+</div>
     
     <h1>資料配布</h1>
     <p class="subtitle"></p>
@@ -426,16 +444,63 @@
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modalImage');
 
-    thumbnails.forEach(img => {
-      img.addEventListener('click', () => {
-        modalImage.src = img.src;
-        modal.classList.add('active');
-      });
-    });
+  const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let currentIndex = 0;
+
+// 画像一覧
+const imageList = Array.from(images).map(img => img.src);
+
+// 表示関数
+function showImage(index) {
+  modalImage.src = imageList[index];
+}
+images.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    currentIndex = index;
+    showImage(currentIndex);
+    modal.classList.add('active');
+  });
+});
 
     modal.addEventListener('click', () => {
       modal.classList.remove('active');
     });
+
+
+// 追加
+
+// 次へ
+nextBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+
+  currentIndex++;
+
+  if (currentIndex >= imageList.length) {
+    currentIndex = 0;
+  }
+
+  showImage(currentIndex);
+});
+
+// 前へ
+prevBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+
+  currentIndex--;
+
+  if (currentIndex < 0) {
+    currentIndex = imageList.length - 1;
+  }
+
+  showImage(currentIndex);
+});
+
+
+
+
+  
   </script>
     
 
