@@ -264,6 +264,69 @@
     .link-title { font-size: 20px; }
     .link-desc { font-size: 14px; }
   }
+
+      table {
+      margin: auto;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .thumbnail {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      width: 220px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.03);
+    }
+
+    .thumbnail img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      padding: 10px;
+      font-size: 14px;
+      background: white;
+    }
+
+    /* モーダル */
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .modal.active {
+      display: flex;
+    }
 </style>
 </head>
 <body>
@@ -273,7 +336,84 @@
     <a href="./images/chirashi.png" target="_blank">
   <img src="./images/chirashi.png" alt="拡大画像を見る" width="100">
 </a>
-    <h1>資料配布ページ</h1>
+
+ <table>
+    <tr>
+      <td>
+        <div class="thumbnail">
+          <img src="./images/chirashi.png" alt="">
+          <div class="caption">画像 1</div>
+        </div>
+      </td>
+
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?2" alt="">
+          <div class="caption">画像 2</div>
+        </div>
+      </td>
+
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?3" alt="">
+          <div class="caption">画像 3</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?4" alt="">
+          <div class="caption">画像 4</div>
+        </div>
+      </td>
+
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?5" alt="">
+          <div class="caption">画像 5</div>
+        </div>
+      </td>
+
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?6" alt="">
+          <div class="caption">画像 6</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?7" alt="">
+          <div class="caption">画像 7</div>
+        </div>
+      </td>
+
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?8" alt="">
+          <div class="caption">画像 8</div>
+        </div>
+      </td>
+
+      <td>
+        <div class="thumbnail">
+          <img src="https://picsum.photos/600?9" alt="">
+          <div class="caption">画像 9</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+ <div class="modal" id="modal">
+    <img id="modalImage" src="" alt="">
+  </div>
+
+    
+    <h1>資料配布</h1>
     <p class="subtitle"></p>
   </header>
 
@@ -283,7 +423,22 @@
     </div>
   </section>
   
+<script>
+    const thumbnails = document.querySelectorAll('.thumbnail img');
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
 
+    thumbnails.forEach(img => {
+      img.addEventListener('click', () => {
+        modalImage.src = img.src;
+        modal.classList.add('active');
+      });
+    });
+
+    modal.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+  </script>
     
 
     <script>
