@@ -360,6 +360,12 @@
 .next {
   right: 30px;
 }
+
+ #content-area {
+  white-space: pre-wrap;      /* 改行は保持しつつ折り返す */
+  word-wrap: break-word;      /* 長い単語も折り返す */
+  overflow-wrap: break-word;  /* 現在はこちらを推奨 */
+} 
 </style>
 </head>
 <body>
