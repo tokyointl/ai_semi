@@ -3,24 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>セミナー資料 ご案内ページ</title>
+<title>スライド画像 - セミナー資料</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f4f8ec;
-    --bg-card: #ffffff;
-    --bg-soft: #eaf2dc;
     --ink: #2a3327;
     --ink-soft: #56624f;
-    --accent: #5a7a4f;
-    --accent-deep: #466239;
-    --accent-soft: #a8c89a;
-    --accent-pale: #d4e4c4;
     --border: #d8e4c8;
-    --shadow: 0 2px 8px rgba(70, 98, 57, 0.08);
-    --shadow-hover: 0 4px 16px rgba(70, 98, 57, 0.18);
+    --accent-deep: #466239;
   }
 
   * { box-sizing: border-box; }
@@ -44,201 +37,104 @@
 
   header {
     text-align: center;
-    padding: 0px 0px;
+    padding-bottom: 12px;
     border-bottom: 2px solid var(--border);
-    margin-bottom: 12px;
-  }
-
-  h1 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 36px;
-    font-weight: 700;
-    margin: 0 0 8px;
-    color: var(--accent-deep);
-    letter-spacing: 0.02em;
-  }
-
-  .subtitle {
-    font-size: 20px;
-    color: var(--ink-soft);
-    margin: 0;
-  }
-
-  section {
-    margin-bottom: 56px;
-  }
-
-  h2 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 28px;
-    color: var(--accent-deep);
-    border-left: 6px solid var(--accent-soft);
-    padding-left: 16px;
-    margin: 0 0 24px;
-    line-height: 1.4;
-  }
-
-  /* グループ見出し */
-  h3 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 22px;
-    color: var(--accent);
-    margin: 0 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px dashed var(--accent-soft);
-  }
-
-  .intro-text {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 28px;
     margin-bottom: 32px;
-    box-shadow: var(--shadow);
   }
 
-  /* ダウンロードカード */
-  .download-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .download-card {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    background: var(--bg-card);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
+  header a {
+    display: inline-block;
+    color: var(--accent-deep);
     text-decoration: none;
-    color: var(--ink);
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow);
-    min-height: 76px;
+    font-weight: bold;
+    font-size: 16px;
   }
 
-  .download-card:hover,
-  .download-card:focus {
-    border-color: var(--accent-soft);
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
-    outline: none;
+  table {
+    margin: auto;
+    border-collapse: collapse;
   }
 
-  .download-icon {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    background: var(--accent);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  td {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .thumbnail {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    width: 220px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .thumbnail:hover {
+    transform: scale(1.03);
+  }
+
+  .thumbnail img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .caption {
+    padding: 10px;
     font-size: 14px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 0.5px;
+    background: white;
+    color: var(--ink);
   }
 
-  .download-info {
-    flex: 1;
-    min-width: 0;
+  /* モーダル */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
   }
 
-  .download-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 4px;
-    line-height: 1.4;
-  }
-
-  .download-meta {
-    font-size: 16px;
-    color: var(--ink-soft);
-    margin: 0;
-  }
-
-  .download-arrow {
-    flex-shrink: 0;
-    font-size: 24px;
-    color: var(--accent);
-  }
-
-  /* リンクグループ */
-  .link-group {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 28px;
-    margin-bottom: 24px;
-    box-shadow: var(--shadow);
-  }
-
-  .link-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .link-list a {
-    display: block;
-    background: var(--bg-soft);
-    border: 2px solid transparent;
+  .modal img {
+    max-width: 90%;
+    max-height: 90%;
     border-radius: 10px;
-    padding: 18px 22px;
-    color: var(--accent-deep);
-    text-decoration: none;
-    transition: all 0.2s ease;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
   }
 
-  .link-list a:hover,
-  .link-list a:focus {
-    background: var(--accent-pale);
-    border-color: var(--accent-soft);
-    transform: translateY(-2px);
-    outline: none;
+  .modal.active {
+    display: flex;
   }
 
-  .link-title {
-    display: block;
-    font-size: 23px;
-    font-weight: 700;
-    line-height: 1.5;
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 64px;
+    height: 64px;
+    border: none;
+    border-radius: 50%;
+    font-size: 36px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.85);
+    color: #333;
+    transition: 0.2s;
   }
 
-  .link-title::before {
-    content: "🔗 ";
-    margin-right: 4px;
+  .nav-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.08);
   }
 
-  .link-desc {
-    display: block;
-    font-size: 16px;
-    color: var(--ink-soft);
-    margin-top: 12px;
-    line-height: 1.7;
-    padding-left: 4px;
-    border-top: 1px dotted var(--border);
-    padding-top: 10px;
-  }
-
-  /* お知らせ */
-  .notice {
-    background: var(--bg-soft);
-    border: 2px solid var(--accent-soft);
-    border-radius: 12px;
-    padding: 24px 28px;
-    margin-top: 32px;
-  }
-
-  .notice strong {
-    color: var(--accent-deep);
-  }
+  .prev { left: 30px; }
+  .next { right: 30px; }
 
   footer {
     text-align: center;
@@ -249,132 +145,26 @@
     font-size: 16px;
   }
 
-  /* スマートフォン対応 */
+  /* スマートフォン対応（テーブルの崩れ防止） */
   @media (max-width: 600px) {
     .container { padding: 24px 16px 60px; }
-    h1 { font-size: 28px; }
-    h2 { font-size: 24px; }
-    h3 { font-size: 20px; }
-    body { font-size: 18px; }
-    .download-card { padding: 18px 16px; gap: 14px; }
-    .download-icon { width: 36px; height: 36px; font-size: 13px; }
-    .download-title { font-size: 19px; }
-    .link-group { padding: 20px; }
-    .link-list a { padding: 16px 18px; }
-    .link-title { font-size: 20px; }
-    .link-desc { font-size: 14px; }
+    td { display: block; padding: 10px auto; }
+    .thumbnail { width: 100%; max-width: 280px; margin: 0 auto; }
+    .thumbnail img { width: 100%; height: auto; aspect-ratio: 1/1; }
+    .nav-btn { width: 48px; height: 48px; font-size: 24px; }
+    .prev { left: 10px; }
+    .next { right: 10px; }
   }
-
-      table {
-      margin: auto;
-      border-collapse: collapse;
-    }
-
-    td {
-      padding: 15px;
-      text-align: center;
-    }
-
-    .thumbnail {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      width: 220px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .thumbnail:hover {
-      transform: scale(1.03);
-    }
-
-    .thumbnail img {
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .caption {
-      padding: 10px;
-      font-size: 14px;
-      background: white;
-    }
-
-    /* モーダル */
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
- .nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 64px;
-  height: 64px;
-
-  border: none;
-  border-radius: 50%;
-
-  font-size: 36px;
-  cursor: pointer;
-
-  background: rgba(255,255,255,0.85);
-  color: #333;
-
-  transition: 0.2s;
-}
-
-.nav-btn:hover {
-  background: white;
-  transform: translateY(-50%) scale(1.08);
-}
-
-.prev {
-  left: 30px;
-}
-
-.next {
-  right: 30px;
-}
-
- #content-area {
-  white-space: pre-wrap;      /* 改行は保持しつつ折り返す */
-  word-wrap: break-word;      /* 長い単語も折り返す */
-  overflow-wrap: break-word;  /* 現在はこちらを推奨 */
-} 
 </style>
 </head>
 <body>
 <div class="container">
 
   <header>
+    <a href="index.html">◀ ご案内ページに戻る</a>
+  </header>
 
-
- <table>
+  <table>
     <tr>
       <td>
         <div class="thumbnail">
@@ -382,14 +172,12 @@
           <div class="caption">Top1</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/server2.png" alt="">
           <div class="caption">サーバー 1</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/server1.png" alt="">
@@ -397,7 +185,6 @@
         </div>
       </td>
     </tr>
-
     <tr>
       <td>
         <div class="thumbnail">
@@ -405,14 +192,12 @@
           <div class="caption">用語1</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/yougo2.png" alt="">
           <div class="caption">用語2</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/rag.png" alt="">
@@ -420,7 +205,6 @@
         </div>
       </td>
     </tr>
-
     <tr>
       <td>
         <div class="thumbnail">
@@ -428,14 +212,12 @@
           <div class="caption">RAG2</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/extension.png" alt="">
           <div class="caption">拡張子</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/web.png" alt="">
@@ -450,14 +232,12 @@
           <div class="caption">RAG2</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/ocr.png" alt="">
           <div class="caption">拡張子</div>
         </div>
       </td>
-
       <td>
         <div class="thumbnail">
           <img src="./images/digital1.png" alt="">
@@ -465,7 +245,7 @@
         </div>
       </td>
     </tr>
-   <tr>
+    <tr>
       <td>
         <div class="thumbnail">
           <img src="./images/digital2.png" alt="">
@@ -473,126 +253,74 @@
         </div>
       </td>
     </tr>
-
-
-
-   
   </table>
 
-<div class="modal" id="modal">
-
-  <button id="prevBtn" class="nav-btn prev">❮</button>
-
-  <img id="modalImage" src="" alt="">
-
-  <button id="nextBtn" class="nav-btn next">❯</button>
-
-</div>
-<!-- 追加 -->
-
-
-    
-
-<script>
-    const images = document.querySelectorAll('.thumbnail img');
-    const modal = document.getElementById('modal');
-    const modalImage = document.getElementById('modalImage');
-
-  const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-let currentIndex = 0;
-
-// 画像一覧
-const imageList = Array.from(images).map(img => img.src);
-
-// 表示関数
-function showImage(index) {
-  modalImage.src = imageList[index];
-}
-images.forEach((img, index) => {
-  img.addEventListener('click', () => {
-    currentIndex = index;
-    showImage(currentIndex);
-    modal.classList.add('active');
-  });
-});
-
-    modal.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-
-// 追加
-
-// 次へ
-nextBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-
-  currentIndex++;
-
-  if (currentIndex >= imageList.length) {
-    currentIndex = 0;
-  }
-
-  showImage(currentIndex);
-});
-
-// 前へ
-prevBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-
-  currentIndex--;
-
-  if (currentIndex < 0) {
-    currentIndex = imageList.length - 1;
-  }
-
-  showImage(currentIndex);
-});
-
-
-
-
-  
-  </script>
-    
-
-    <script>
-        // 読み込みたいテキストファイルのパス
-        const textFileUrl = 'data.txt'; 
-
-        fetch(textFileUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('ネットワーク応答が正常ではありませんでした');
-                }
-                return response.text(); // テキストとして解析
-            })
-            .then(data => {
-                // 指定した要素にテキストを挿入
-                document.getElementById('content-area').textContent = data;
-            })
-            .catch(error => {
-                console.error('読み込みエラー:', error);
-                document.getElementById('content-area').textContent = 'ファイルの読み込みに失敗しました。';
-            });
-    </script>
-
-
-  <section>
-    <div class="notice">
-      <strong>お知らせ</strong><br>
-      次回セミナーは <strong>6月10日（水）</strong> 開催予定です。<br>
-      詳細は決まり次第、こちらのページにてご案内いたします。
-    </div>
-  </section>
+  <div class="modal" id="modal">
+    <button id="prevBtn" class="nav-btn prev">❮</button>
+    <img id="modalImage" src="" alt="">
+    <button id="nextBtn" class="nav-btn next">❯</button>
+  </div>
 
   <footer>
     最終更新日：2026年5月30日<br>
-
   </footer>
 
 </div>
+
+<script>
+  const images = document.querySelectorAll('.thumbnail img');
+  const modal = document.getElementById('modal');
+  const modalImage = document.getElementById('modalImage');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let currentIndex = 0;
+
+  // 画像一覧のsrcを取得
+  const imageList = Array.from(images).map(img => img.src);
+
+  // 指定したインデックスの画像を表示する関数
+  function showImage(index) {
+    modalImage.src = imageList[index];
+  }
+
+  // 各サムネイルにクリックイベントを追加
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      currentIndex = index;
+      showImage(currentIndex);
+      modal.classList.add('active');
+    });
+  });
+
+  // モーダルの背景をクリックしたら閉じる
+  modal.addEventListener('click', (e) => {
+    // 画像やボタンをクリックした時は閉じないようにする
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // 次へボタン
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // モーダルを閉じるイベントを止める
+    currentIndex++;
+    if (currentIndex >= imageList.length) {
+      currentIndex = 0;
+    }
+    showImage(currentIndex);
+  });
+
+  // 前へボタン
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // モーダルを閉じるイベントを止める
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = imageList.length - 1;
+    }
+    showImage(currentIndex);
+  });
+</script>
+
 </body>
 </html>
