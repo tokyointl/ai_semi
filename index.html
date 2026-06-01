@@ -49,6 +49,14 @@
     margin-bottom: 12px;
   }
 
+  header a {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--accent-deep);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
   h1 {
     font-family: 'Noto Serif JP', serif;
     font-size: 36px;
@@ -78,7 +86,6 @@
     line-height: 1.4;
   }
 
-  /* グループ見出し */
   h3 {
     font-family: 'Noto Serif JP', serif;
     font-size: 22px;
@@ -97,7 +104,14 @@
     box-shadow: var(--shadow);
   }
 
-  /* ダウンロードカード */
+  #content-area {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-family: inherit;
+    margin: 0;
+  }
+
   .download-list {
     display: flex;
     flex-direction: column;
@@ -166,7 +180,6 @@
     color: var(--accent);
   }
 
-  /* リンクグループ */
   .link-group {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -227,7 +240,6 @@
     padding-top: 10px;
   }
 
-  /* お知らせ */
   .notice {
     background: var(--bg-soft);
     border: 2px solid var(--accent-soft);
@@ -244,12 +256,12 @@
     text-align: center;
     margin-top: 64px;
     padding-top: 32px;
+    border-bottom: none;
     border-top: 2px solid var(--border);
     color: var(--ink-soft);
     font-size: 16px;
   }
 
-  /* スマートフォン対応 */
   @media (max-width: 600px) {
     .container { padding: 24px 16px 60px; }
     h1 { font-size: 28px; }
@@ -264,131 +276,13 @@
     .link-title { font-size: 20px; }
     .link-desc { font-size: 14px; }
   }
-
-      table {
-      margin: auto;
-      border-collapse: collapse;
-    }
-
-    td {
-      padding: 15px;
-      text-align: center;
-    }
-
-    .thumbnail {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      width: 220px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .thumbnail:hover {
-      transform: scale(1.03);
-    }
-
-    .thumbnail img {
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .caption {
-      padding: 10px;
-      font-size: 14px;
-      background: white;
-    }
-
-    /* モーダル */
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
- .nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 64px;
-  height: 64px;
-
-  border: none;
-  border-radius: 50%;
-
-  font-size: 36px;
-  cursor: pointer;
-
-  background: rgba(255,255,255,0.85);
-  color: #333;
-
-  transition: 0.2s;
-}
-
-.nav-btn:hover {
-  background: white;
-  transform: translateY(-50%) scale(1.08);
-}
-
-.prev {
-  left: 30px;
-}
-
-.next {
-  right: 30px;
-}
-
- #content-area {
-  white-space: pre-wrap;      /* 改行は保持しつつ折り返す */
-  word-wrap: break-word;      /* 長い単語も折り返す */
-  overflow-wrap: break-word;  /* 現在はこちらを推奨 */
-} 
 </style>
 </head>
 <body>
 <div class="container">
 
   <header>
-<a href="img_slide.html">スライド画像</a>
-
-
-
-<div class="modal" id="modal">
-
-  <button id="prevBtn" class="nav-btn prev">❮</button>
-
-  <img id="modalImage" src="" alt="">
-
-  <button id="nextBtn" class="nav-btn next">❯</button>
-
-</div>
-<!-- 追加 -->
-
-
-    
+    <a href="img_slide.html">▶ スライド画像はこちら</a>
     <h1>資料配布</h1>
     <p class="subtitle"></p>
   </header>
@@ -398,245 +292,23 @@
       <pre id="content-area">読み込み中...</pre>
     </div>
   </section>
-  
-<script>
-    const images = document.querySelectorAll('.thumbnail img');
-    const modal = document.getElementById('modal');
-    const modalImage = document.getElementById('modalImage');
 
-  const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-let currentIndex = 0;
-
-// 画像一覧
-const imageList = Array.from(images).map(img => img.src);
-
-// 表示関数
-function showImage(index) {
-  modalImage.src = imageList[index];
-}
-images.forEach((img, index) => {
-  img.addEventListener('click', () => {
-    currentIndex = index;
-    showImage(currentIndex);
-    modal.classList.add('active');
-  });
-});
-
-    modal.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-
-// 追加
-
-// 次へ
-nextBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-
-  currentIndex++;
-
-  if (currentIndex >= imageList.length) {
-    currentIndex = 0;
-  }
-
-  showImage(currentIndex);
-});
-
-// 前へ
-prevBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-
-  currentIndex--;
-
-  if (currentIndex < 0) {
-    currentIndex = imageList.length - 1;
-  }
-
-  showImage(currentIndex);
-});
-
-
-
-
-  
-  </script>
-    
-
-    <script>
-        // 読み込みたいテキストファイルのパス
-        const textFileUrl = 'data.txt'; 
-
-        fetch(textFileUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('ネットワーク応答が正常ではありませんでした');
-                }
-                return response.text(); // テキストとして解析
-            })
-            .then(data => {
-                // 指定した要素にテキストを挿入
-                document.getElementById('content-area').textContent = data;
-            })
-            .catch(error => {
-                console.error('読み込みエラー:', error);
-                document.getElementById('content-area').textContent = 'ファイルの読み込みに失敗しました。';
-            });
-    </script>
-  <!-- 関連リンクを先に -->
   <section>
     <h2>🌐 関連リンク</h2>
 
-    <!-- グループ2: AI -->
-<div class="link-group">
-  <h3>AI</h3>
-  <ul class="link-list">
-    <li>
-      <a href="https://chatgpt.com/" target="_blank" rel="noopener">
-        <span class="link-title">ChatGPT</span>
-        <span class="link-desc">個人のさまざまな興味に応えてくれる究極のハウツーガイド</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://gemini.google.com/" target="_blank" rel="noopener">
-        <span class="link-title">Gemini</span>
-        <span class="link-desc">Googleの最新モデルを利用したAI。GoogleドキュメントやGmailとの連携もスムーズです。</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://claude.ai/" target="_blank" rel="noopener">
-        <span class="link-title">Claude</span>
-        <span class="link-desc">Anthropic社が開発したAI。自然な日本語と、長文の読み込み・分析に定評があります。</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://notebooklm.google.com/" target="_blank" rel="noopener">
-        <span class="link-title">NotebookLM</span>
-        <span class="link-desc">Googleが提供するAIノートブック。アップロードした資料に基づいた高度な要約や回答が可能です。</span>
-      </a>
-    </li>
-   　<li>
-      <a href="https://lab.ndl.go.jp/news/2025/2026-02-24/" target="_blank" rel="noopener">
-        <span class="link-title">NDLOCR-Liteの公開について</span>
-        <span class="link-desc">NDLOCR-Liteは、NDLOCRの軽量版を目指して開発したOCRであり、ノートパソコン等の一般的な家庭用コンピュータやOS環境で、図書や雑誌といった資料のデジタル化画像からテキストデータが作成できるOCRです。</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-    <!-- グループ2: 判例 -->
     <div class="link-group">
-      <h3>判例・法令</h3>
+      <h3>AI</h3>
       <ul class="link-list">
         <li>
-          <a href="https://www.courts.go.jp/app/hanrei_jp/search1" target="_blank" rel="noopener">
-            <span class="link-title">裁判例検索</span>
-            <span class="link-desc">裁判所の判例検索システム。「表現の自由」「契約解除」「過失相殺」などのキーワードで検索できます。</span>
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener">
+            <span class="link-title">ChatGPT</span>
+            <span class="link-desc">個人のさまざまな興味に応えてくれる究極のハウツーガイド</span>
           </a>
         </li>
         <li>
-          <a href="https://elaws.e-gov.go.jp/" target="_blank" rel="noopener">
-            <span class="link-title">e-Gov法令検索</span>
-            <span class="link-desc">日本の公式法令データベース。民法・刑法・行政法規・省令などを条文単位で検索可能。改正履歴も確認できます。</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- グループ3: 国会資料・立法資料 -->
-    <div class="link-group">
-      <h3>国会資料・立法資料</h3>
-      <ul class="link-list">
-        <li>
-          <a href="https://dl.ndl.go.jp/" target="_blank" rel="noopener">
-            <span class="link-title">国立国会図書館デジタルコレクション</span>
-            <span class="link-desc">古い法律書・官報・立法資料を多数収録。明治期の資料や法学雑誌もあり、憲法史研究にも有用です。</span>
+          <a href="https://gemini.google.com/" target="_blank" rel="noopener">
+            <span class="link-title">Gemini</span>
+            <span class="link-desc">Googleの最新モデルを利用したAI。GoogleドキュメントやGmailとの連携もスムーズです。</span>
           </a>
         </li>
         <li>
-          <a href="https://kokkai.ndl.go.jp/" target="_blank" rel="noopener">
-            <span class="link-title">国会会議録検索システム</span>
-            <span class="link-desc">国会審議を全文検索できます。法律制定時の趣旨・立法経緯・大臣答弁の確認に便利です。</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="https://kanpou.npb.go.jp/" target="_blank" rel="noopener">
-            <span class="link-title">官報検索</span>
-            <span class="link-desc">法律公布や行政公告を確認できます。</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- グループ5: 学術論文・統計データ-->
-    <div class="link-group">
-      <h3>学術論文・統計データ-</h3>
-      <ul class="link-list">
-        <li>
-          <a href="https://cir.nii.ac.jp/" target="_blank" rel="noopener">
-            <span class="link-title">CiNii Research</span>
-            <span class="link-desc">日本の学術論文検索。「生成AI 著作権」「行政裁量」などのキーワード検索が可能です。</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.jstage.jst.go.jp/" target="_blank" rel="noopener">
-            <span class="link-title">J-STAGE</span>
-            <span class="link-desc">学会論文の公開サイト。法学系論文も多数公開されています。</span>
-          </a>
-        </li>
-       <li>
-          <a href="https://www.e-stat.go.jp//" target="_blank" rel="noopener">
-            <span class="link-title">e-Stat</span>
-            <span class="link-desc">日本の統計が閲覧できる政府統計ポータルサイトです</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-  </section>
-
-  <!-- ダウンロードをリンクの下に -->
-  <section>
-    <h2>📄 配布資料のダウンロード</h2>
-    <div class="download-list">
-
-      <a href="files/seminar-text.pdf" download class="download-card">
-        <div class="download-icon">PDF</div>
-        <div class="download-info">
-          <p class="download-title">セミナーテキスト（本編）</p>
-          <p class="download-meta">PDF形式 ・ 約2.5MB</p>
-        </div>
-        <div class="download-arrow">⬇</div>
-      </a>
-
-      <a href="files/chirashi (2).png" download class="download-card">
-        <div class="download-icon">PDF</div>
-        <div class="download-info">
-          <p class="download-title">リーフレット</p>
-          <p class="download-meta">PDF形式 ・ 約800KB</p>
-        </div>
-        <div class="download-arrow">⬇</div>
-      </a>
-
-
-    </div>
-  </section>
-
-  <section>
-    <div class="notice">
-      <strong>お知らせ</strong><br>
-      次回セミナーは <strong>6月10日（水）</strong> 開催予定です。<br>
-      詳細は決まり次第、こちらのページにてご案内いたします。
-    </div>
-  </section>
-
-  <footer>
-    最終更新日：2026年5月30日<br>
-
-  </footer>
-
-</div>
-</body>
-</html>
